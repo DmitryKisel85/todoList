@@ -117,6 +117,13 @@ h1 {
 	}
 }
 
+@media (hover: none) {
+	.todo-item .btn-delete,
+	.todo-item .btn-edit {
+		opacity: 1;
+	}
+}
+
 .todo-item.checked {
 }
 
@@ -150,6 +157,12 @@ h1 {
 		filter: brightness(1.5);
 	}
 }
+
+/* @media (hover: none) {
+	.btn-add {
+		filter: none;
+	}
+} */
 
 .btn-add:active {
 	transform: translateY(2px);
@@ -202,14 +215,15 @@ h1 {
 .btn-delete,
 .btn-edit {
 	color: var(--text-color);
-	opacity: 0;
-	cursor: pointer;
 }
 
-.btn-delete:hover,
-.btn-edit:hover {
-	opacity: 1 !important;
-	transition: opacity 0.2s;
+@media (hover: hover) {
+	.btn-delete:hover,
+	.btn-edit:hover {
+		opacity: 1 !important;
+		transition: opacity 0.3s ease-out;
+		cursor: pointer;
+	}
 }
 
 .btn-delete {
@@ -244,8 +258,10 @@ h1 {
 	transition: color 0.3s ease-out;
 }
 
-.btn-clear-all:hover {
-	color: var(--input-color);
+@media (hover: hover) {
+	.btn-clear-all:hover {
+		color: var(--input-color);
+	}
 }
 
 .btn-clear-all:active {
