@@ -23,15 +23,31 @@ class Task {
 
 const createTemplate = (task, index) => {
 	return `
-    <li class="todo-item ${task.completed ? "checked" : ""}" data-index="${index}">	
+    <li class="todo-item ${task.completed ? "checked" : ""}" data-index="${index}">
 		<input type="checkbox" id="btn-complete-${index}" class="btn-complete" ${task.completed ? "checked" : ""} />
-		<label for="btn-complete-${index}"></label>	  
-        <input type="text" id="input-description" class="description " value="${task.description}" readonly></input>
+		<label for="btn-complete-${index}"></label>
+        <textarea id="input-description" class="description" data-autoresize rows="1" readonly>${task.description}</textarea>
         <button class="btn-edit" id="btn-edit" data-state='closed'><i class="far fa-edit"></i></button>
         <button class="btn-delete id="btn-delete"><i class="fas fa-times"></i></button>
     </li>
+
     `;
 };
+
+// Функция авторесайза textarea
+function addAutoResize() {
+	document.querySelectorAll("[data-autoresize]").forEach(function (element) {
+		element.style.boxSizing = "border-box";
+		var offset = element.offsetHeight - element.clientHeight;
+		element.style.height = "auto";
+		element.style.height = element.scrollHeight + offset + "px";
+		element.addEventListener("input", function (event) {
+			event.target.style.height = "auto";
+			event.target.style.height = event.target.scrollHeight + offset + "px";
+		});
+		element.removeAttribute("data-autoresize");
+	});
+}
 
 // Подсчитываем кол-во активных заданий
 const thingsLeftTodoAmount = () => {
@@ -46,10 +62,11 @@ const fillHtmlList = () => {
 	thingsLeftTodoAmount();
 
 	if (tasks.length > 0) {
-		// Создаем  список туду
+		// Создаем список туду
 		tasks.forEach((item, index) => {
 			todosWrapper.innerHTML += createTemplate(item, index);
 		});
+		addAutoResize();
 
 		// Навешиваем обработчик событий на каждый туду
 		todoItemElems = document.querySelectorAll(".todo-item");
@@ -102,7 +119,7 @@ const deleteTask = (index) => {
 	setTimeout(() => {
 		tasks.splice(index, 1);
 		updateLocalAndFillHtmlList();
-	}, 500);
+	}, 400);
 };
 
 //========================================================================================================================================================
@@ -177,7 +194,7 @@ clearAllBtn.addEventListener("click", () => {
 		tasks = [];
 		todosWrapper.classList.remove("deleting");
 		updateLocalAndFillHtmlList();
-	}, 500);
+	}, 400);
 });
 
 clearCompletedBtn.addEventListener("click", () => {
@@ -188,6 +205,6 @@ clearCompletedBtn.addEventListener("click", () => {
 		setTimeout(() => {
 			tasks = tasks.filter((task) => task.completed == false);
 			updateLocalAndFillHtmlList();
-		}, 500);
+		}, 400);
 	});
 });
