@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://kit.fontawesome.com/7a983bf340.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="style.css" />
+		<title>ToDo List</title>
+	</head>
+	<body>
+		<div class="todo-app">
+			<header class="header">
+				<h1>THINGS TO DO</h1>
+			</header>
+			<main class="main">
+				<div class="input-wrapper">
+					<input type="text" id="input-main" class="input-main" placeholder="What are we going to do?" />
+					<button class="btn-add" id="add-task-btn"><i class="fas fa-plus"></i></button>
+				</div>
+				<ul class="todos-wrapper"></ul>
+			</main>
+			<footer class="footer">
+				<div class="todo-count">Things left to do: <span class="todo-number">0</span></div>
+				<button id="clear-all" class="btn-clear-all">Clear All</button>
+			</footer>
+		</div>
+
+		<script src="Sortable.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
