@@ -2,6 +2,7 @@
 
 const addTaskBtn = document.getElementById("add-task-btn");
 const clearAllBtn = document.getElementById("clear-all");
+const clearCompletedBtn = document.getElementById("clear-completed");
 const deskTaskInput = document.getElementById("input-main");
 const todosWrapper = document.querySelector(".todos-wrapper");
 const todoNumber = document.querySelector(".todo-number");
@@ -25,7 +26,7 @@ const createTemplate = (task, index) => {
     <li class="todo-item ${task.completed ? "checked" : ""}" data-index="${index}">	
 		<input type="checkbox" id="btn-complete-${index}" class="btn-complete" ${task.completed ? "checked" : ""} />
 		<label for="btn-complete-${index}"></label>	  
-        <input type="text" id="input-description" class="description" value="${task.description}" readonly></input>
+        <input type="text" id="input-description" class="description " value="${task.description}" readonly></input>
         <button class="btn-edit" id="btn-edit" data-state='closed'><i class="far fa-edit"></i></button>
         <button class="btn-delete id="btn-delete"><i class="fas fa-times"></i></button>
     </li>
@@ -170,24 +171,23 @@ deskTaskInput.addEventListener("keypress", (e) => {
 });
 
 clearAllBtn.addEventListener("click", () => {
-	// tasks = [];
-	todosWrapper.classList.add("deliting");
+	todosWrapper.classList.add("deleting");
 
 	setTimeout(() => {
 		tasks = [];
-		todosWrapper.classList.remove("deliting");
+		todosWrapper.classList.remove("deleting");
 		updateLocalAndFillHtmlList();
 	}, 500);
-	// updateLocalAndFillHtmlList();
 });
 
-// Подключение drag & drop
-// const sortToDo = () => {
-// 	new Sortable(todosWrapper, {
-// 		animation: 100,
-// 		zIndex: 5,
-// 	});
-// 	updateLocal();
-// };
+clearCompletedBtn.addEventListener("click", () => {
+	const completed = document.querySelectorAll(".checked");
 
-// sortToDo();
+	completed.forEach((item) => {
+		item.classList.add("deleting");
+		setTimeout(() => {
+			tasks = tasks.filter((task) => task.completed == false);
+			updateLocalAndFillHtmlList();
+		}, 500);
+	});
+});
