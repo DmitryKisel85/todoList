@@ -105,22 +105,21 @@ h1 {
 	z-index: 100;
 }
 
-.todo-item .btn-delete,
-.todo-item .btn-edit {
-	opacity: 0;
-}
-
-@media (hover: hover) {
-	.todo-item:hover .btn-delete,
-	.todo-item:hover .btn-edit {
-		opacity: 0.5;
-	}
-}
-
 @media (hover: none) {
 	.todo-item .btn-delete,
 	.todo-item .btn-edit {
 		opacity: 1;
+	}
+}
+
+@media (hover: hover) {
+	.todo-item .btn-delete,
+	.todo-item .btn-edit {
+		opacity: 0;
+	}
+	.todo-item:hover .btn-delete,
+	.todo-item:hover .btn-edit {
+		opacity: 0.5;
 	}
 }
 
