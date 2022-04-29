@@ -110,6 +110,16 @@ h1 {
 	opacity: 1;
 }
 
+body.hasHover .todo-item .btn-delete,
+body.hasHover .todo-item .btn-edit {
+	opacity: 0;
+}
+
+body.hasHover .todo-item:hover .btn-delete,
+body.hasHover .todo-item:hover .btn-edit {
+	opacity: 0.5;
+}
+
 /* @media (hover: none) {
 	.todo-item .btn-delete,
 	.todo-item .btn-edit {
