@@ -107,8 +107,7 @@ h1 {
 
 .todo-item .btn-delete,
 .todo-item .btn-edit {
-	opacity: 1;
-	z-index: 10;
+	opacity: 0;
 }
 
 @media (hover: hover) {
@@ -146,8 +145,10 @@ h1 {
 	transition: filter 0.3s ease-out;
 }
 
-.btn-add:hover {
-	filter: brightness(1.5);
+@media (hover: hover) {
+	.btn-add {
+		filter: brightness(1.5);
+	}
 }
 
 .btn-add:active {
