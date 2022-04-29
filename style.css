@@ -105,13 +105,13 @@ h1 {
 	z-index: 100;
 }
 
-.todo-item .btn-delete,
-.todo-item .btn-edit {
+.btn-delete,
+.btn-edit {
 	opacity: 1;
 }
 
-body.hasHover .todo-item .btn-delete,
-body.hasHover .todo-item .btn-edit {
+body.hasHover .btn-delete,
+body.hasHover .btn-edit {
 	opacity: 0;
 }
 
@@ -238,9 +238,9 @@ body.hasHover .todo-item:hover .btn-edit {
 		transition: opacity 0.3s ease-out;
 		cursor: pointer;
 	}
-}
+} */
 
-@media (hover: none) {
+/* @media (hover: none) {
 	.btn-delete,
 	.btn-edit {
 		opacity: 1;
