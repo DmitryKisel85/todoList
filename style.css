@@ -189,17 +189,11 @@ body.hasHover .todo-item:hover .btn-edit {
 	transition: filter 0.3s ease-out;
 }
 
-@media (hover: hover) {
-	.btn-add {
+@media (hover: hover) and (pointer: fine) {
+	.btn-add:hover {
 		filter: brightness(1.5);
 	}
 }
-
-/* @media (hover: none) {
-	.btn-add {
-		filter: none;
-	}
-} */
 
 .btn-add:active {
 	transform: translateY(2px);
@@ -254,6 +248,15 @@ body.hasHover .todo-item:hover .btn-edit {
 	color: var(--text-color);
 }
 
+@media (hover: hover) and (pointer: fine) {
+	.btn-delete:hover,
+	.btn-edit:hover {
+		opacity: 1 !important;
+		transition: opacity 0.3s ease-out;
+		cursor: pointer;
+	}
+}
+
 /* @media (hover: hover) {
 	.btn-delete:hover,
 	.btn-edit:hover {
@@ -302,7 +305,7 @@ body.hasHover .todo-item:hover .btn-edit {
 	transition: color 0.3s ease-out;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
 	.btn-clear-all:hover {
 		color: var(--input-color);
 	}
