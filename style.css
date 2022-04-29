@@ -102,6 +102,7 @@ h1 {
 	margin-bottom: 5px;
 	padding: 10px;
 	border-bottom: 2px solid var(--text-color);
+	z-index: 100;
 }
 
 .todo-item .btn-delete,
