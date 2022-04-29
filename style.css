@@ -225,6 +225,13 @@ h1 {
 	}
 }
 
+@media (hover: none) {
+	.btn-delete,
+	.btn-edit {
+		opacity: 1;
+	}
+}
+
 .btn-delete {
 	font-size: 28px;
 }
