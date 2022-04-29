@@ -104,16 +104,16 @@ h1 {
 	border-bottom: 2px solid var(--text-color);
 }
 
-@media (hover: none) {
-	.btn-delete,
-	.btn-edit {
-		opacity: 1;
-	}
+.todo-item .btn-delete,
+.todo-item .btn-edit {
+	opacity: 1;
 }
 
-.todo-item:hover .btn-delete,
-.todo-item:hover .btn-edit {
-	opacity: 0.5;
+@media (hover: hover) {
+	.todo-item:hover .btn-delete,
+	.todo-item:hover .btn-edit {
+		opacity: 0.5;
+	}
 }
 
 .todo-item.checked {
