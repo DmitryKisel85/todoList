@@ -179,6 +179,7 @@ const sortToDo = () => {
 	new Sortable(todosWrapper, {
 		animation: 100,
 		zIndex: 5,
+		appendTo: "body",
 	});
 	updateLocal();
 };
