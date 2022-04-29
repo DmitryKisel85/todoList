@@ -105,11 +105,9 @@ h1 {
 	z-index: 100;
 }
 
-@media (hover: none) {
-	.todo-item .btn-delete,
-	.todo-item .btn-edit {
-		opacity: 1;
-	}
+.todo-item .btn-delete,
+.todo-item .btn-edit {
+	opacity: 1;
 }
 
 @media (hover: hover) {
