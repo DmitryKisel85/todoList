@@ -231,7 +231,7 @@ body.hasHover .todo-item:hover .btn-edit {
 	color: var(--text-color);
 }
 
-@media (hover: hover) {
+/* @media (hover: hover) {
 	.btn-delete:hover,
 	.btn-edit:hover {
 		opacity: 1 !important;
@@ -245,7 +245,7 @@ body.hasHover .todo-item:hover .btn-edit {
 	.btn-edit {
 		opacity: 1;
 	}
-}
+} */
 
 .btn-delete {
 	font-size: 28px;
