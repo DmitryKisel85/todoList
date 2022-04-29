@@ -100,9 +100,8 @@ h1 {
 	gap: 20px;
 	font-size: 24px;
 	margin-bottom: 5px;
-	padding: 10px;
+	padding: 10px 0;
 	border-bottom: 2px solid var(--text-color);
-	z-index: 100;
 }
 
 .todo-item .btn-delete,
@@ -284,7 +283,8 @@ h1 {
 
 @media (max-width: 400px) {
 	.todo-app {
-		max-width: 100%;
+		/* max-width: 100%; */
+		width: 100%;
 	}
 
 	.header {
@@ -315,6 +315,6 @@ h1 {
 	.footer__btns {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: 15px;
 	}
 }
