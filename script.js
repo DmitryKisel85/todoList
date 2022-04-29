@@ -175,11 +175,11 @@ clearAllBtn.addEventListener("click", () => {
 });
 
 // Подключение drag & drop
-const sortToDo = () => {
-	new Sortable(todosWrapper, {
-		animation: 100,
-	});
-	updateLocal();
-};
+// const sortToDo = () => {
+// 	new Sortable(todosWrapper, {
+// 		animation: 100,
+// 	});
+// 	updateLocal();
+// };
 
-sortToDo();
+// sortToDo();
