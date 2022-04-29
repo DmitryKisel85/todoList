@@ -122,49 +122,11 @@ h1 {
 	}
 }
 
-/* @media (hover: hover) {
-	.todo-item .btn-delete,
-	.todo-item .btn-edit {
-		opacity: 0;
-	}
-	.todo-item:hover .btn-delete,
-	.todo-item:hover .btn-edit {
-		opacity: 0.5;
-	}
-} */
-
-/* body.hasHover .btn-delete,
-body.hasHover .btn-edit {
-	opacity: 0;
-}
-
-body.hasHover .todo-item:hover .btn-delete,
-body.hasHover .todo-item:hover .btn-edit {
-	opacity: 0.5;
-} */
-
-/* @media (hover: none) {
-	.todo-item .btn-delete,
-	.todo-item .btn-edit {
-		opacity: 1;
-	}
-}
-
-@media (hover: hover) {
-	.todo-item .btn-delete,
-	.todo-item .btn-edit {
-		opacity: 0;
-	}
-	.todo-item:hover .btn-delete,
-	.todo-item:hover .btn-edit {
-		opacity: 0.5;
-	}
-} */
-
 .todo-item.checked {
 }
 
-.todo-item.delition {
+.todo-item.deliting,
+.todos-wrapper.deliting {
 	animation: opacity 1s ease-in-out;
 }
 
@@ -257,22 +219,6 @@ body.hasHover .todo-item:hover .btn-edit {
 	}
 }
 
-/* @media (hover: hover) {
-	.btn-delete:hover,
-	.btn-edit:hover {
-		opacity: 1 !important;
-		transition: opacity 0.3s ease-out;
-		cursor: pointer;
-	}
-} */
-
-/* @media (hover: none) {
-	.btn-delete,
-	.btn-edit {
-		opacity: 1;
-	}
-} */
-
 .btn-delete {
 	font-size: 28px;
 }
@@ -294,7 +240,7 @@ body.hasHover .todo-item:hover .btn-edit {
 }
 
 .btn-clear-all {
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 400;
 	text-transform: uppercase;
 	color: var(--text-color);

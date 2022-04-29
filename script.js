@@ -1,34 +1,5 @@
 "use strict";
 
-//
-
-// function watchForHover() {
-// 	// lastTouchTime is used for ignoring emulated mousemove events
-// 	let lastTouchTime = 0;
-
-// 	function enableHover() {
-// 		if (new Date() - lastTouchTime < 500) return;
-// 		document.body.classList.add("hasHover");
-// 	}
-
-// 	function disableHover() {
-// 		document.body.classList.remove("hasHover");
-// 	}
-
-// 	function updateLastTouchTime() {
-// 		lastTouchTime = new Date();
-// 	}
-
-// 	document.addEventListener("touchstart", updateLastTouchTime, true);
-// 	document.addEventListener("touchstart", disableHover, true);
-// 	document.addEventListener("mousemove", enableHover, true);
-
-// 	enableHover();
-// }
-
-// watchForHover();
-// //
-
 const addTaskBtn = document.getElementById("add-task-btn");
 const clearAllBtn = document.getElementById("clear-all");
 const deskTaskInput = document.getElementById("input-main");
@@ -125,7 +96,7 @@ const completeTask = (index) => {
 
 // Удаление туду
 const deleteTask = (index) => {
-	todoItemElems[index].classList.add("delition");
+	todoItemElems[index].classList.add("deleting");
 
 	setTimeout(() => {
 		tasks.splice(index, 1);
@@ -199,8 +170,15 @@ deskTaskInput.addEventListener("keypress", (e) => {
 });
 
 clearAllBtn.addEventListener("click", () => {
-	tasks = [];
-	updateLocalAndFillHtmlList();
+	// tasks = [];
+	todosWrapper.classList.add("deliting");
+
+	setTimeout(() => {
+		tasks = [];
+		todosWrapper.classList.remove("deliting");
+		updateLocalAndFillHtmlList();
+	}, 500);
+	// updateLocalAndFillHtmlList();
 });
 
 // Подключение drag & drop
