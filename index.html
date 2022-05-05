@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
 		<script src="https://kit.fontawesome.com/7a983bf340.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="style.css" />
 		<title>ToDo List</title>
@@ -22,9 +23,14 @@
 			</main>
 			<footer class="footer">
 				<div class="todo-count">Things left to do: <span class="todo-number">0</span></div>
+				<div class="filter-btns">
+					<button id="all-tasks" class="btn-all-tasks btn-filter btn-filter_active">All</button>
+					<button id="active-tasks" class="btn-active-tasks btn-filter">Active</button>
+					<button id="completed-tasks" class="btn-completed-tasks btn-filter">Completed</button>
+				</div>
 				<div class="footer__btns">
-					<button id="clear-all" class="btn-clear-all">Clear All</button>
-					<button id="clear-completed" class="btn-clear-completed">Clear completed</button>
+					<button id="clear-all" class="btn-clear-all btn-footer">Clear All</button>
+					<button id="clear-completed" class="btn-clear-completed btn-footer">Clear completed</button>
 				</div>
 			</footer>
 		</div>

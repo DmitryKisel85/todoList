@@ -34,6 +34,9 @@ textarea {
 	resize: none;
 }
 
+
+
+
 .todo-app {
 	background: linear-gradient(to bottom, #46549e, #89cbf0);
 	border-radius: 10px;
@@ -102,11 +105,17 @@ h1 {
 .todo-item {
 	display: flex;
 	align-items: center;
+	width: 100%;
+	flex: 0 0 100%;
 	gap: 20px;
 	font-size: 24px;
 	margin-bottom: 5px;
 	padding: 10px 0;
 	border-bottom: 2px solid var(--text-color);
+}
+
+.hidden {
+	display: none;
 }
 
 .todo-item .btn-delete,
@@ -187,6 +196,13 @@ h1 {
 	user-select: none;
 	cursor: pointer;
 }
+
+@media (hover: hover) and (pointer: fine) {
+	.btn-complete:hover + label::before {
+		opacity: 0.5;
+	}
+}
+
 .btn-complete + label::before {
 	content: "";
 	display: inline-block;
@@ -231,8 +247,8 @@ h1 {
 	font-size: 18px;
 }
 
-.btn-clear-all,
-.btn-clear-completed {
+.btn-filter,
+.btn-footer {
 	font-size: 18px;
 	font-weight: 400;
 	text-transform: uppercase;
@@ -241,18 +257,35 @@ h1 {
 	border-radius: 5px;
 	cursor: pointer;
 	transition: color 0.3s ease-out;
+	border-bottom: 1px solid transparent;
 }
+
+.btn-filter {
+	opacity: 0.5;
+}
+
+.btn-filter_active {
+	opacity: 1;
+}
+
+
+.btn-footer:active {
+	transform: translateY(2px);
+}
+
+
 
 @media (hover: hover) and (pointer: fine) {
 	.btn-clear-all:hover,
 	.btn-clear-completed:hover {
 		outline: 1px solid var(--text-color);
 	}
-}
 
-.btn-clear-all:active,
-.btn-clear-completed:active {
-	transform: translateY(2px);
+	.btn-all-tasks:hover,
+	.btn-active-tasks:hover,
+	.btn-completed-tasks:hover {
+		opacity: 1;
+		
 }
 
 /* ICONS */
@@ -331,6 +364,10 @@ h1 {
 
 	.btn-add svg {
 		margin-right: 10px;
+	}
+
+	.btn-filter {
+		padding: 5px;
 	}
 
 	.footer__btns {

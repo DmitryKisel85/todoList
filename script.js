@@ -6,6 +6,11 @@ const clearCompletedBtn = document.getElementById("clear-completed");
 const deskTaskInput = document.getElementById("input-main");
 const todosWrapper = document.querySelector(".todos-wrapper");
 const todoNumber = document.querySelector(".todo-number");
+//
+const filterBtns = document.querySelectorAll(".btn-filter");
+const allTasksBtn = document.getElementById("all-tasks");
+const activeTasksBtn = document.getElementById("active-tasks");
+const completedTasksBtn = document.getElementById("completed-tasks");
 
 let tasks;
 
@@ -13,6 +18,11 @@ let tasks;
 !localStorage.tasks ? (tasks = []) : (tasks = JSON.parse(localStorage.getItem("tasks")));
 
 let todoItemElems = [];
+
+let filterState;
+!localStorage.filterState ? (filterState = "all") : (filterState = JSON.parse(localStorage.getItem("filterState")));
+
+console.log(tasks, filterState);
 
 class Task {
 	constructor(description) {
@@ -23,15 +33,14 @@ class Task {
 
 const createTemplate = (task, index) => {
 	return `
-    <li class="todo-item ${task.completed ? "checked" : ""}" data-index="${index}">
-		<input type="checkbox" id="btn-complete-${index}" class="btn-complete" ${task.completed ? "checked" : ""} />
-		<label for="btn-complete-${index}"></label>
-        <textarea id="input-description" class="description" data-autoresize rows="1" readonly>${task.description}</textarea>
-        <button class="btn-edit" id="btn-edit" data-state='closed'><i class="far fa-edit"></i></button>
-        <button class="btn-delete id="btn-delete"><i class="fas fa-times"></i></button>
-    </li>
-
-    `;
+		<li class="todo-item ${task.completed ? "checked" : ""}" data-index="${index}">
+			<input type="checkbox" id="btn-complete-${index}" class="btn-complete" ${task.completed ? "checked" : ""} />
+			<label for="btn-complete-${index}"></label>
+			<textarea id="input-description" class="description" data-autoresize rows="1" readonly>${task.description}</textarea>
+			<button class="btn-edit" id="btn-edit" data-state='closed'><i class="far fa-edit"></i></button>
+			<button class="btn-delete id="btn-delete"><i class="fas fa-times"></i></button>
+		</li>
+		`;
 };
 
 // Функция авторесайза textarea
@@ -70,6 +79,24 @@ const fillHtmlList = () => {
 
 		// Навешиваем обработчик событий на каждый туду
 		todoItemElems = document.querySelectorAll(".todo-item");
+		console.log(filterState);
+
+		switch (filterState) {
+			case "all":
+				filterTodos("all");
+				break;
+			case "active":
+				filterTodos("active-tasks");
+				break;
+			case "completed":
+				filterTodos("completed-tasks");
+				break;
+		}
+
+		if (completedTasksBtn.classList.contains("btn-filter_active")) {
+			filterTodos("completed-tasks");
+		}
+
 		todoItemElems.forEach((elem) => {
 			elem.addEventListener("click", (e) => {
 				if (e.target.classList.contains("btn-complete")) {
@@ -82,6 +109,12 @@ const fillHtmlList = () => {
 					editTask(elem.dataset.index, elem);
 				}
 			});
+
+			elem.addEventListener("dblclick", (e) => {
+				if (e.target.classList.contains("description")) {
+					editTask(elem.dataset.index, elem);
+				}
+			});
 		});
 	}
 };
@@ -91,6 +124,7 @@ fillHtmlList();
 // Запись актуального списка в localstorage
 const updateLocal = () => {
 	localStorage.setItem("tasks", JSON.stringify(tasks));
+	localStorage.setItem("filterState", JSON.stringify(filterState));
 };
 
 // Объединение функций обновления localstorage и формирования списка туду
@@ -166,11 +200,61 @@ const editTask = (index, elem) => {
 		todoItemInputDisabling(descriptionInput);
 	}
 };
+//========================================================================================================================================================
+// ФИЛЬТР ТУДУ
+
+filterBtns.forEach((btn) => {
+	btn.addEventListener("click", (e) => {
+		filterTodos(e.target.id);
+	});
+});
+
+function filterTodos(id) {
+	const todoItemElems = document.querySelectorAll(".todo-item");
+
+	switch (id) {
+		case "all-tasks":
+			filterBtns.forEach((btn) => btn.classList.remove("btn-filter_active"));
+			allTasksBtn.classList.add("btn-filter_active");
+
+			todoItemElems.forEach((item) => {
+				item.classList.remove("hidden");
+			});
+			filterState = "all";
+			localStorage.setItem("filterState", JSON.stringify(filterState));
+			break;
+
+		case "active-tasks":
+			filterBtns.forEach((btn) => btn.classList.remove("btn-filter_active"));
+			activeTasksBtn.classList.add("btn-filter_active");
+
+			todoItemElems.forEach((item) => {
+				item.classList.contains("checked") ? item.classList.add("hidden") : item.classList.remove("hidden");
+			});
+
+			filterState = "active";
+			localStorage.setItem("filterState", JSON.stringify(filterState));
+
+			break;
+
+		case "completed-tasks":
+			filterBtns.forEach((btn) => btn.classList.remove("btn-filter_active"));
+			completedTasksBtn.classList.add("btn-filter_active");
+
+			todoItemElems.forEach((item) => {
+				!item.classList.contains("checked") ? item.classList.add("hidden") : item.classList.remove("hidden");
+			});
+
+			filterState = "completed";
+			localStorage.setItem("filterState", JSON.stringify(filterState));
+			break;
+	}
+}
 
 // EVENT LISTENERS
 
 addTaskBtn.addEventListener("click", () => {
-	if (!deskTaskInput.value) return;
+	if (!deskTaskInput.value || deskTaskInput.value.match(/^[ ]+$/)) return;
 
 	tasks.push(new Task(deskTaskInput.value));
 	updateLocalAndFillHtmlList();
@@ -178,7 +262,7 @@ addTaskBtn.addEventListener("click", () => {
 });
 
 deskTaskInput.addEventListener("keypress", (e) => {
-	if (!deskTaskInput.value) return;
+	if (!deskTaskInput.value || deskTaskInput.value.match(/^[ ]+$/)) return;
 
 	if (e.key == "Enter") {
 		tasks.push(new Task(deskTaskInput.value));
@@ -193,6 +277,7 @@ clearAllBtn.addEventListener("click", () => {
 	setTimeout(() => {
 		tasks = [];
 		todosWrapper.classList.remove("deleting");
+		filterState = "all";
 		updateLocalAndFillHtmlList();
 	}, 400);
 });
