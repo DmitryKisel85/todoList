@@ -74,10 +74,7 @@ const fillHtmlList = () => {
 		});
 		addAutoResize();
 
-		// Навешиваем обработчик событий на каждый туду
-		todoItemElems = document.querySelectorAll(".todo-item");
-		console.log(filterState);
-
+		// Включаем последний использованный фильтр
 		switch (filterState) {
 			case "all":
 				filterTodos("all");
@@ -89,11 +86,10 @@ const fillHtmlList = () => {
 				filterTodos("completed-tasks");
 				break;
 		}
+		// Навешиваем обработчик событий на каждый туду
+		todoItemElems = document.querySelectorAll(".todo-item");
 
-		if (completedTasksBtn.classList.contains("btn-filter_active")) {
-			filterTodos("completed-tasks");
-		}
-
+		//
 		todoItemElems.forEach((elem) => {
 			elem.addEventListener("click", (e) => {
 				if (e.target.classList.contains("btn-complete")) {
@@ -121,7 +117,6 @@ fillHtmlList();
 // Запись актуального списка в localstorage
 const updateLocal = () => {
 	localStorage.setItem("tasks", JSON.stringify(tasks));
-	localStorage.setItem("filterState", JSON.stringify(filterState));
 };
 
 // Объединение функций обновления localstorage и формирования списка туду
@@ -197,15 +192,8 @@ const editTask = (index, elem) => {
 		todoItemInputDisabling(descriptionInput);
 	}
 };
-//========================================================================================================================================================
-// ФИЛЬТР ТУДУ
 
-filterBtns.forEach((btn) => {
-	btn.addEventListener("click", (e) => {
-		filterTodos(e.target.id);
-	});
-});
-
+// Фильтр туду
 function filterTodos(id) {
 	const todoItemElems = document.querySelectorAll(".todo-item");
 
@@ -217,6 +205,7 @@ function filterTodos(id) {
 			todoItemElems.forEach((item) => {
 				item.classList.remove("hidden");
 			});
+
 			filterState = "all";
 			localStorage.setItem("filterState", JSON.stringify(filterState));
 			break;
@@ -248,7 +237,8 @@ function filterTodos(id) {
 	}
 }
 
-// EVENT LISTENERS
+//========================================================================================================================================================
+// ОБРАБОТЧИКИ СОБЫТИЙ на КНОПКИ
 
 addTaskBtn.addEventListener("click", () => {
 	if (!deskTaskInput.value || deskTaskInput.value.match(/^[ ]+$/)) return;
@@ -288,5 +278,11 @@ clearCompletedBtn.addEventListener("click", () => {
 			tasks = tasks.filter((task) => task.completed == false);
 			updateLocalAndFillHtmlList();
 		}, 400);
+	});
+});
+
+filterBtns.forEach((btn) => {
+	btn.addEventListener("click", (e) => {
+		filterTodos(e.target.id);
 	});
 });
