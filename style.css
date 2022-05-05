@@ -165,11 +165,13 @@ h1 {
 .btn-add {
 	cursor: pointer;
 	transition: filter 0.3s ease-out;
+	color: var(--input-color);
 }
 
 @media (hover: hover) and (pointer: fine) {
 	.btn-add:hover {
 		filter: brightness(1.5);
+		
 	}
 }
 
@@ -180,8 +182,8 @@ h1 {
 .btn-add svg {
 	display: block;
 	margin-right: 20px;
-	/* font-size: 32px; */
-	fill: var(--input-color);
+	font-size: 32px;
+	
 }
 
 .btn-complete {
