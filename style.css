@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik:300,regular,500,700");
 
+:root {
+	--text-color: #e7f9ff;
+	--input-color: #46549e;
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	font-family: "Rubik", sans-serif;
 	font-size: 20px;
-}
-
-:root {
-	--text-color: #e7f9ff;
-	--input-color: #46549e;
 }
 
 body {
@@ -79,7 +79,6 @@ h1 {
 	align-items: center;
 	background-color: #fff;
 	border-radius: 5px;
-	/* margin-bottom: 30px; */
 }
 
 .input-main {
@@ -95,8 +94,6 @@ h1 {
 }
 
 .todos-wrapper {
-	/* padding-top: 15px;
-	width: 95%; */
 	padding: 15px 10px 0 10px;
 	flex: 1 1 100%;
 	width: 100%;
@@ -135,9 +132,6 @@ h1 {
 	}
 }
 
-.todo-item.checked {
-}
-
 .todo-item.deleting,
 .todos-wrapper.deleting {
 	animation: opacity 1s ease-in-out;
@@ -150,7 +144,6 @@ h1 {
 .description {
 	color: var(--text-color);
 	display: inline-flex;
-	/* flex-wrap: wrap; */
 	flex-grow: 1;
 	word-break: break-all;
 	overflow: hidden;
@@ -160,7 +153,9 @@ h1 {
 	color: var(--text-color);
 }
 
+/* ========================================================================================================================================== */
 /* BUTTONS */
+/* ========================================================================================================================================== */
 
 .btn-add {
 	cursor: pointer;
@@ -176,12 +171,6 @@ h1 {
 
 .btn-add:active {
 	transform: translateY(2px);
-}
-
-.btn-add svg {
-	display: block;
-	margin-right: 20px;
-	font-size: 32px;
 }
 
 .btn-complete {
@@ -284,10 +273,13 @@ h1 {
 		opacity: 1;
 	}
 }
+/* ========================================================================================================================================== */
 /* ICONS */
+/* ========================================================================================================================================== */
 
 .fa-plus {
 	display: block;
+	margin-right: 20px;
 	color: var(--input-color);
 	font-size: 36px;
 }
@@ -295,11 +287,12 @@ h1 {
 .fa-times {
 	font-size: 24px;
 	position: relative;
-	/* transform: translateY(-1px); */
 	transform: translateY(1px);
 }
 
+/* ========================================================================================================================================== */
 /* ANIMATION */
+/* ========================================================================================================================================== */
 
 @keyframes opacity {
 	from {
@@ -311,8 +304,9 @@ h1 {
 	}
 }
 
-/* MEDIAS */
-
+/* ========================================================================================================================================== */
+/* MEDIA QUERIES */
+/* ========================================================================================================================================== */
 @media (max-width: 768px) {
 	h1 {
 		font-size: 48px;
@@ -333,7 +327,6 @@ h1 {
 	}
 
 	.todo-app {
-		/* max-width: 100%; */
 		width: 100%;
 	}
 

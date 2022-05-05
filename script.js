@@ -13,16 +13,13 @@ const activeTasksBtn = document.getElementById("active-tasks");
 const completedTasksBtn = document.getElementById("completed-tasks");
 
 let tasks;
-
-// Выгрузка списка из localstorage
-!localStorage.tasks ? (tasks = []) : (tasks = JSON.parse(localStorage.getItem("tasks")));
-
-let todoItemElems = [];
-
 let filterState;
+
+// Выгрузка списка и фильтра из localstorage
+!localStorage.tasks ? (tasks = []) : (tasks = JSON.parse(localStorage.getItem("tasks")));
 !localStorage.filterState ? (filterState = "all") : (filterState = JSON.parse(localStorage.getItem("filterState")));
 
-console.log(tasks, filterState);
+let todoItemElems = [];
 
 class Task {
 	constructor(description) {
