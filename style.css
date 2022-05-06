@@ -132,6 +132,23 @@ h1 {
 	}
 }
 
+.todo-item.checked .btn-edit,
+.todo-item.checked .btn-delete {
+	opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.todo-item.checked .btn-delete,
+	.todo-item.checked .btn-edit {
+		opacity: 0;
+	}
+
+	.todo-item.checked:hover .btn-delete,
+	.todo-item.checked:hover .btn-edit {
+		opacity: 0.5;
+	}
+}
+
 .todo-item.deleting,
 .todos-wrapper.deleting {
 	animation: opacity 1s ease-in-out;
